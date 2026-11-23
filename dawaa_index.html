@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dawaa | WhatsApp Pharmacy Automation with n8n</title>
+<meta name="description" content="A bilingual WhatsApp pharmacy assistant built with n8n, Gemini, Google Sheets and Telegram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--bg2:#12121a;--card:#161621;--line:#2a2a3a;--text:#f3efe6;--muted:#a19f98;--gold:#d4af37;--gold2:#f2d77b;--on:#16361f;--green:#4ade80;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(900px 500px at 80% -10%,#2a2210 0%,transparent 60%),radial-gradient(700px 500px at 0% 20%,#171a33 0%,transparent 60%),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;margin:0}
+.gold{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0;flex-wrap:wrap}
+.nav-l{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.2rem;letter-spacing:.04em}
+.back{color:var(--muted);text-decoration:none;font-size:.88rem;border:1px solid var(--line);border-radius:999px;padding:5px 14px;background:var(--bg2);transition:.2s}
+.back:hover{color:var(--gold);border-color:var(--gold)}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--on);border:1px solid #2c6b40;font-size:.82rem}
+.badge:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.hero{padding:56px 0 40px;text-align:center}
+.eyebrow{color:var(--gold);letter-spacing:.25em;text-transform:uppercase;font-size:.75rem;font-weight:600}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.08;margin:14px 0}
+.hero p{max-width:640px;margin:0 auto 26px;color:var(--muted);font-size:1.08rem}
+.btn{display:inline-block;padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:36px 0 0}
+.stat{border:1px solid var(--line);background:rgba(22,22,33,.7);border-radius:16px;padding:16px;text-align:center}
+.stat b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.8rem;color:var(--gold)}
+.stat span{color:var(--muted);font-size:.85rem}
+section{padding:44px 0}
+.sec-h{margin-bottom:22px}.sec-h h2{font-size:clamp(1.6rem,4vw,2.2rem)}.sec-h p{color:var(--muted);margin:6px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:18px;padding:22px;color:var(--text);text-decoration:none;display:block;transition:.25s}
+a.card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12px 30px rgba(212,175,55,.12)}
+.card h3{font-size:1.2rem;margin-bottom:6px}.card p{margin:0;color:var(--muted);font-size:.95rem}
+.ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(212,175,55,.12);color:var(--gold);font-size:1.2rem;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.chip{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--text);font-size:.9rem;font-family:inherit;cursor:pointer;transition:.2s}
+.chip:hover,.chip.act{border-color:var(--gold);color:var(--gold)}
+#msgs{border:1px solid var(--line);background:var(--bg2);border-radius:18px;padding:16px;min-height:260px;max-height:420px;overflow-y:auto}
+.me,.bot{margin:10px 0;padding:10px 14px;border-radius:14px;max-width:85%;white-space:pre-wrap}
+.me{margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405}
+.bot{background:var(--card);border:1px solid var(--line)}
+.sys{margin:12px auto;text-align:center;color:var(--muted);font-size:.8rem;max-width:90%}
+.sys:before{content:"⚙ "}
+.note{color:var(--muted);font-size:.85rem;margin-top:12px}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:12px}
+.node{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 16px;text-align:center;font-size:.9rem}
+.node small{display:block;color:var(--muted)}.node.hl{border-color:var(--gold);box-shadow:0 0 0 1px rgba(212,175,55,.3)}
+.arrow{color:var(--gold)}
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{counter-increment:s;display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.step:before{content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-family:"Playfair Display",Georgia,serif;font-weight:700;color:#1a1405;background:linear-gradient(135deg,var(--gold),var(--gold2))}
+.step h3{font-size:1.05rem;margin-bottom:2px}.step p{margin:0;color:var(--muted);font-size:.93rem}
+.tag{display:inline-block;margin-top:6px;font-size:.72rem;color:var(--gold);border:1px solid rgba(212,175,55,.4);border-radius:999px;padding:2px 10px}
+.stack{display:flex;flex-wrap:wrap;gap:10px}
+.stack span{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-size:.9rem}
+.dl{display:flex;justify-content:space-between;align-items:center;gap:10px}.dl span{color:var(--gold);font-size:.85rem}
+.other{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);margin-top:30px;padding:28px 0 40px;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <div class="nav-l">
+    <div class="logo"><span class="gold">Dawaa</span></div>
+    <a class="back" id="backLink" href="../">← All projects</a>
+  </div>
+  <span class="badge">Portfolio showcase</span>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">WhatsApp pharmacy automation</div>
+  <h1>Medicine requests, <span class="gold">handled in seconds</span></h1>
+  <p>Customers text a medicine name or send a photo of a prescription. Dawaa reads it with AI, checks the stock, reserves it for two hours, and brings in the pharmacist only when a human check is needed.</p>
+  <a class="btn" href="#demo">See a simulated chat</a> <a class="btn ghost" href="#how">How it works</a>
+  <div class="stats">
+    <div class="stat"><b>2</b><span>n8n workflows</span></div>
+    <div class="stat"><b>3</b><span>request routes</span></div>
+    <div class="stat"><b>2 h</b><span>reservation hold</span></div>
+    <div class="stat"><b>AR + EN</b><span>bilingual replies</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="sec-h"><h2>What it does</h2><p>One conversation, three possible outcomes.</p></div>
+  <div class="grid">
+    <div class="card"><div class="ico">⚡</div><h3>Auto reserve</h3><p>A clear match in the catalog is reserved at once, stock is updated, and the customer gets a confirmation with the total.</p></div>
+    <div class="card"><div class="ico">🩺</div><h3>Pharmacist review</h3><p>Uncertain requests go to the pharmacist on Telegram. One tap to approve or reject, and the customer is told right away.</p></div>
+    <div class="card"><div class="ico">🔎</div><h3>Nothing found</h3><p>If no medicine matches, the customer is politely asked to send the name again or a clearer photo of the prescription.</p></div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="sec-h"><h2>Simulated chat</h2><p>Pick a scenario and watch the flow play out.</p></div>
+  <div class="chips" role="tablist">
+    <button class="chip" data-s="auto">Auto reserve</button>
+    <button class="chip" data-s="pharm">Pharmacist review</button>
+    <button class="chip" data-s="none">Nothing found</button>
+  </div>
+  <div id="msgs" aria-live="polite"></div>
+  <p class="note">This is a scripted simulation with sample medicine names and prices, not a live connection. The real flow runs on WhatsApp and Telegram.</p>
+</section>
+
+<section id="how">
+  <div class="sec-h"><h2>How it works</h2><p>From a WhatsApp message to a confirmed reservation.</p></div>
+  <div class="flow">
+    <div class="node">Customer<small>WhatsApp</small></div><span class="arrow">→</span>
+    <div class="node">Read the request<small>text or photo → Gemini</small></div><span class="arrow">→</span>
+    <div class="node">Match catalog<small>fuzzy search in Google Sheets</small></div><span class="arrow">→</span>
+    <div class="node hl">Route<small>auto · pharmacist · not found</small></div><span class="arrow">→</span>
+    <div class="node">Reply + update<small>WhatsApp, Sheets, Telegram</small></div>
+  </div>
+  <div class="steps" style="margin-top:26px">
+    <div class="step"><div><h3>Main Workflow</h3><p>Normalizes the incoming message, downloads prescription photos, asks Gemini to read the request, and matches each medicine against the catalog with a fuzzy algorithm.</p><span class="tag">WhatsApp trigger</span></div></div>
+    <div class="step"><div><h3>Pharmacist decision loop</h3><p>Requests that need a human check are sent to Telegram. The pharmacist's answer is parsed, the reservation lines and stock are updated, and the customer is notified.</p><span class="tag">Telegram trigger</span></div></div>
+    <div class="step"><div><h3>Reservation expiry</h3><p>Every 15 minutes, expired reservations are found and marked, the stock is given back, and the customer is notified.</p><span class="tag">Every 15 minutes</span></div></div>
+    <div class="step"><div><h3>Low stock report</h3><p>Every day at 22:00, low-stock medicines are collected into a reorder list and sent to the team by Telegram and email.</p><span class="tag">Daily · 22:00</span></div></div>
+    <div class="step"><div><h3>Error handling</h3><p>Any failed run is classified, logged to a sheet, and reported by Telegram and email, so nothing fails silently.</p><span class="tag">Error trigger</span></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>Built with</h2></div>
+  <div class="stack"><span>n8n</span><span>WhatsApp Business API</span><span>Gemini</span><span>Google Sheets</span><span>Telegram Bot</span><span>Gmail</span><span>JavaScript</span></div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>Download</h2><p>Cleaned workflow files, ready to import into your own n8n. Add your own credentials and replace the <code>YOUR_…</code> placeholders.</p></div>
+  <div class="grid">
+    <a class="card dl" href="workflows-public/Dawaa_Main_Workflow.json" download><h3>Main Workflow</h3><span>.json ↓</span></a>
+    <a class="card dl" href="workflows-public/Dawaa_Error_Handling.json" download><h3>Error Handling</h3><span>.json ↓</span></a>
+  </div>
+</section>
+
+<section>
+  <div class="sec-h"><h2>More projects</h2></div>
+  <a class="card other" id="otherLink" href="../ath-studios/">
+    <div><h3>ATH Studios</h3><p>Live hiring and HR automation: job applications, AI CV coaching, and a policy-grounded HR chat.</p></div>
+    <span class="btn ghost">View project →</span>
+  </a>
+</section>
+
+<footer>© Dawaa · Part of <a id="homeLink" href="../">Ahmed Tarek's portfolio</a><br>Built with n8n, WhatsApp, Gemini, Google Sheets and Telegram.</footer>
+</div>
+
+<script>
+/* Edit these two links to match where the parent site and the other project live. */
+const CONFIG = {
+  portfolio: "../",
+  otherProject: "../ath-studios/"
+};
+const $ = s => document.querySelector(s);
+["backLink","homeLink"].forEach(id => $("#"+id).href = CONFIG.portfolio);
+$("#otherLink").href = CONFIG.otherProject;
+
+const SCENES = {
+  auto: [
+    ["me","بنادول اكسترا 2"],
+    ["sys","Gemini reads the request, the catalog match finds the medicine in stock, route: auto reserve"],
+    ["bot","✅ Reserved:\n2 × Panadol Extra = 60 EGP\nTotal: 60 EGP. Pick up from the pharmacy. / محجوز لمدة ساعتين"]
+  ],
+  pharm: [
+    ["me","📷 Photo of a prescription"],
+    ["sys","Photo downloaded and read by Gemini, route: pharmacist review"],
+    ["bot","شكرًا لإنتظارك، الدكتور بيراجع طلبك"],
+    ["sys","The pharmacist taps Approve on Telegram. Reservation lines and stock are updated"],
+    ["bot","✅ Your pharmacist approved: 1 × Augmentin 1g, 1 × Cataflam. Total 185 EGP, reserved for 2 hours. / تم الحجز لمدة ساعتين"]
+  ],
+  none: [
+    ["me","xyzdrug 500"],
+    ["sys","No match in the catalog, route: nothing found"],
+    ["bot","ابعت الدواء بتاعك او صورة و اضحة للروشتة"]
+  ]
+};
+let timers = [];
+function play(key){
+  timers.forEach(clearTimeout); timers = [];
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("act", c.dataset.s === key));
+  const box = $("#msgs"); box.textContent = "";
+  SCENES[key].forEach(([cls,text],i) => {
+    timers.push(setTimeout(() => {
+      const d = document.createElement("div");
+      d.className = cls; d.textContent = text; d.dir = "auto";
+      box.append(d); box.scrollTop = box.scrollHeight;
+    }, i * 1300));
+  });
+}
+document.querySelectorAll(".chip").forEach(c => c.onclick = () => play(c.dataset.s));
+play("auto");
+</script>
+</body>
+</html>
