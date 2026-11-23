@@ -1,0 +1,4 @@
+res_id,created_at,customer_id,wa_phone_id,customer_name,sku,name,qty,total_egp,status,expires_at,pharmacist,note
+R-261121-43G3-1,2026-11-21T15:25:09.815+02:00,201065744628,1534050459786335,Ahmed Tarek 𓂆,P001,Panadol 500 mg,1,45,pending_pharmacist,,,
+R-261123-YRYC-1,2026-11-23T23:07:08.040+02:00,201065744628,1534050459786335,Ahmed Tarek 𓂆,P001,Panadol 500 mg,1,45,pending_pharmacist,,,
+R-261124-THLT-1,2026-11-24T00:03:25.799+02:00,201065744628,1534050459786335,Ahmed Tarek 𓂆,P001,Panadol 500 mg,1,45,reserved,2026-11-24 2:03,Ahmedtarek003,

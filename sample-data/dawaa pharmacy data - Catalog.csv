@@ -1,0 +1,11 @@
+sku,name,active_ingredient,strength,form,price_egp,stock,reorder_level,controlled
+P001,Panadol,paracetamol,500 mg,tablets x24,45,31,10,no
+P002,Abimol,paracetamol,500 mg,tablets x20,25,60,10,no
+P003,Brufen,ibuprofen,400 mg,tablets x30,62,8,10,no
+P004,Augmentin,amoxicillin/clavulanate,1 g,tablets x14,185,15,5,no
+P005,Megamox,amoxicillin/clavulanate,1 g,tablets x14,120,22,5,no
+P006,Concor,bisoprolol,5 mg,tablets x30,98,12,5,no
+P007,Glucophage,metformin,850 mg,tablets x50,58,30,10,no
+P008,Cidophage,metformin,850 mg,tablets x50,38,0,10,no
+P009,Xanax,alprazolam,0.5 mg,tablets x30,70,5,2,yes
+P010,Antinal,nifuroxazide,200 mg,capsules x24,30,50,10,no
