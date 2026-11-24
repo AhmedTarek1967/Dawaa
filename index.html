@@ -41,15 +41,40 @@ section{padding:44px 0}
 a.card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12px 30px rgba(212,175,55,.12)}
 .card h3{font-size:1.2rem;margin-bottom:6px}.card p{margin:0;color:var(--muted);font-size:.95rem}
 .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(212,175,55,.12);color:var(--gold);font-size:1.2rem;margin-bottom:14px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-.chip{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--text);font-size:.9rem;font-family:inherit;cursor:pointer;transition:.2s}
-.chip:hover,.chip.act{border-color:var(--gold);color:var(--gold)}
-#msgs{border:1px solid var(--line);background:var(--bg2);border-radius:18px;padding:16px;min-height:260px;max-height:420px;overflow-y:auto}
-.me,.bot{margin:10px 0;padding:10px 14px;border-radius:14px;max-width:85%;white-space:pre-wrap}
-.me{margin-left:auto;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405}
-.bot{background:var(--card);border:1px solid var(--line)}
-.sys{margin:12px auto;text-align:center;color:var(--muted);font-size:.8rem;max-width:90%}
-.sys:before{content:"⚙ "}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;align-items:start}
+.panel{border:1px solid var(--line);background:var(--bg2);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;height:540px}
+.ph{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:600}
+.ph small{font-weight:500;opacity:.8;font-size:.72rem;margin-left:6px}
+.ph.wa{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405}
+.ph.lg{background:#1b1b2e;color:var(--text);border-bottom:1px solid var(--line)}
+.ph.tg{background:linear-gradient(135deg,#6d5ae6,#9b8cff);color:#fff}
+.pb{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.me,.bot{padding:9px 13px;border-radius:14px;max-width:88%;white-space:pre-wrap;font-size:.92rem;word-break:break-word}
+.me{align-self:flex-end;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405}
+.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line)}
+.bot b.who{display:block;color:#9b8cff;font-size:.72rem;margin-bottom:2px}
+.tgbtns{display:flex;gap:8px;margin-top:10px}
+.tgbtns button{flex:1;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--text);cursor:pointer;font-family:inherit;font-size:.85rem}
+.tgbtns button.ok:hover{border-color:#4ade80;color:#4ade80}.tgbtns button.no:hover{border-color:#f87171;color:#f87171}
+.verdict{margin-top:8px;font-size:.82rem;color:var(--muted)}
+#log{background:#10101c;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.76rem;gap:3px;color:#8d8bb8}
+#log .ln{white-space:pre-wrap;word-break:break-word}
+#log .st{color:var(--gold2)}#log .ok{color:#6ee7a0}#log .rt{color:#9b8cff}#log .er{color:#f87171}
+.state{font-size:.72rem;padding:3px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
+.state.run{color:var(--gold);border-color:var(--gold)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 12px;border-top:1px solid var(--line);scrollbar-width:thin}
+.chip{flex:none;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--gold2);font-size:.8rem;font-family:inherit;cursor:pointer;white-space:nowrap}
+.chip:hover{border-color:var(--gold)}
+.inrow{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.inrow input{flex:1;min-width:0;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:.95rem;font-family:inherit}
+.inrow input:focus{outline:none;border-color:var(--gold)}
+.ib{width:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;font-size:1.05rem}
+.ib.send{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405;border:0}
+.ib:disabled,.chip:disabled{opacity:.45;cursor:not-allowed}
+.stock{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:14px}
+.sk{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:8px 12px;font-size:.8rem;display:flex;justify-content:space-between;gap:8px}
+.sk span{color:var(--muted)}.sk b{color:var(--gold)}.sk.low b{color:#f87171}
+.stats.five{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));margin:0 0 16px}
 .note{color:var(--muted);font-size:.85rem;margin-top:12px}
 .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:12px}
 .node{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 16px;text-align:center;font-size:.9rem}
@@ -61,6 +86,7 @@ a.card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12
 .step h3{font-size:1.05rem;margin-bottom:2px}.step p{margin:0;color:var(--muted);font-size:.93rem}
 .tag{display:inline-block;margin-top:6px;font-size:.72rem;color:var(--gold);border:1px solid rgba(212,175,55,.4);border-radius:999px;padding:2px 10px}
 .stack{display:flex;flex-wrap:wrap;gap:10px}
+code{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.85em;color:var(--gold2)}
 .stack span{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 16px;font-size:.9rem}
 .dl{display:flex;justify-content:space-between;align-items:center;gap:10px}.dl span{color:var(--gold);font-size:.85rem}
 .other{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
@@ -83,7 +109,7 @@ footer a{color:var(--gold);text-decoration:none}
   <div class="eyebrow">WhatsApp pharmacy automation</div>
   <h1>Medicine requests, <span class="gold">handled in seconds</span></h1>
   <p>Customers text a medicine name or send a photo of a prescription. Dawaa reads it with AI, checks the stock, reserves it for two hours, and brings in the pharmacist only when a human check is needed.</p>
-  <a class="btn" href="#demo">See a simulated chat</a> <a class="btn ghost" href="#how">How it works</a>
+  <a class="btn" href="#demo">Try the live demo</a> <a class="btn ghost" href="#how">How it works</a> <a class="btn ghost" href="#setup">Set it up yourself</a>
   <div class="stats">
     <div class="stat"><b>2</b><span>n8n workflows</span></div>
     <div class="stat"><b>3</b><span>request routes</span></div>
@@ -102,14 +128,36 @@ footer a{color:var(--gold);text-decoration:none}
 </section>
 
 <section id="demo">
-  <div class="sec-h"><h2>Simulated chat</h2><p>Pick a scenario and watch the flow play out.</p></div>
-  <div class="chips" role="tablist">
-    <button class="chip" data-s="auto">Auto reserve</button>
-    <button class="chip" data-s="pharm">Pharmacist review</button>
-    <button class="chip" data-s="none">Nothing found</button>
+  <div class="sec-h"><h2>Live demo</h2><p>Type a medicine, or tap an example. Watch the workflow run and answer as the pharmacist on Telegram.</p></div>
+  <div class="stats five">
+    <div class="stat"><b id="sExec">0</b><span>Executions</span></div>
+    <div class="stat"><b id="sRes">0</b><span>Reserved</span></div>
+    <div class="stat"><b id="sPen">0</b><span>Pending</span></div>
+    <div class="stat"><b id="sApp">0</b><span>Approved</span></div>
+    <div class="stat"><b id="sRej">0</b><span>Rejected</span></div>
   </div>
-  <div id="msgs" aria-live="polite"></div>
-  <p class="note">This is a scripted simulation with sample medicine names and prices, not a live connection. The real flow runs on WhatsApp and Telegram.</p>
+  <div class="panels">
+    <div class="panel">
+      <div class="ph wa"><span>💊 Dawaa Pharmacy<small>WhatsApp Business</small></span><button class="ib" id="reset" title="Reset demo" style="width:34px;height:30px;font-size:.9rem">🗑</button></div>
+      <div class="pb" id="wa" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
+      <form class="inrow" id="form">
+        <button type="button" class="ib" id="photo" title="Send a prescription photo">📎</button>
+        <input id="q" placeholder="Type a medicine…  اكتب اسم الدوا" autocomplete="off" dir="auto">
+        <button class="ib send" id="send" title="Send">➤</button>
+      </form>
+    </div>
+    <div class="panel">
+      <div class="ph lg"><span>⚙ Execution log</span><span class="state" id="state">Idle</span></div>
+      <div class="pb" id="log"></div>
+    </div>
+    <div class="panel">
+      <div class="ph tg"><span>🧑‍⚕️ Dawaa Pharmacists<small>Telegram group · bot</small></span></div>
+      <div class="pb" id="tg"></div>
+    </div>
+  </div>
+  <div class="stock" id="stock" aria-label="Live catalog stock"></div>
+  <p class="note">This demo runs in your browser with the same matching rules as the n8n workflow and a sample catalog, so it works anywhere. The real flow runs on WhatsApp and Telegram with your own credentials (see Set it up yourself).</p>
 </section>
 
 <section id="how">
@@ -143,6 +191,23 @@ footer a{color:var(--gold);text-decoration:none}
   </div>
 </section>
 
+<section id="setup">
+  <div class="sec-h"><h2>Set it up yourself</h2><p>Download the files, add your own accounts, and it runs in your n8n.</p></div>
+  <div class="steps">
+    <div class="step"><div><h3>Create the sheet</h3><p>Make a Google Sheet with three tabs named <b>Catalog</b>, <b>Reservations</b> and <b>Errors</b>, and import the sample CSVs into them.</p></div></div>
+    <div class="step"><div><h3>Fill in the placeholders</h3><p>In both JSON files, replace <code>YOUR_GOOGLE_SHEET_ID</code>, <code>YOUR_TELEGRAM_CHAT_ID</code>, <code>YOUR_WHATSAPP_PHONE_NUMBER_ID</code> and <code>your-email@example.com</code>.</p></div></div>
+    <div class="step"><div><h3>Import into n8n</h3><p>Use Import from File for each workflow. n8n must be reachable over HTTPS.</p></div></div>
+    <div class="step"><div><h3>Add your credentials</h3><p>WhatsApp, Telegram bot, Gemini API key, Google Sheets and Gmail. Then re-pick the sheet tab in each Google Sheets node.</p></div></div>
+    <div class="step"><div><h3>Activate and test</h3><p>Turn on both workflows, point the Meta webhook at n8n, and send a medicine name to your WhatsApp number.</p></div></div>
+  </div>
+  <div class="grid" style="margin-top:22px">
+    <a class="card dl" href="sample-data/Catalog.csv" download><h3>Catalog sample</h3><span>.csv ↓</span></a>
+    <a class="card dl" href="sample-data/Reservations.csv" download><h3>Reservations tab</h3><span>.csv ↓</span></a>
+    <a class="card dl" href="sample-data/Errors.csv" download><h3>Errors tab</h3><span>.csv ↓</span></a>
+    <a class="card dl" href="https://github.com/AhmedTarek1967/Dawaa" target="_blank" rel="noopener"><h3>Full guide on GitHub</h3><span>README →</span></a>
+  </div>
+</section>
+
 <section>
   <div class="sec-h"><h2>More projects</h2></div>
   <a class="card other" id="otherLink" href="../ath-studios/">
@@ -164,40 +229,152 @@ const $ = s => document.querySelector(s);
 ["backLink","homeLink"].forEach(id => $("#"+id).href = CONFIG.portfolio);
 $("#otherLink").href = CONFIG.otherProject;
 
-const SCENES = {
-  auto: [
-    ["me","بنادول اكسترا 2"],
-    ["sys","Gemini reads the request, the catalog match finds the medicine in stock, route: auto reserve"],
-    ["bot","✅ Reserved:\n2 × Panadol Extra = 60 EGP\nTotal: 60 EGP. Pick up from the pharmacy. / محجوز لمدة ساعتين"]
-  ],
-  pharm: [
-    ["me","📷 Photo of a prescription"],
-    ["sys","Photo downloaded and read by Gemini, route: pharmacist review"],
-    ["bot","شكرًا لإنتظارك، الدكتور بيراجع طلبك"],
-    ["sys","The pharmacist taps Approve on Telegram. Reservation lines and stock are updated"],
-    ["bot","✅ Your pharmacist approved: 1 × Augmentin 1g, 1 × Cataflam. Total 185 EGP, reserved for 2 hours. / تم الحجز لمدة ساعتين"]
-  ],
-  none: [
-    ["me","xyzdrug 500"],
-    ["sys","No match in the catalog, route: nothing found"],
-    ["bot","ابعت الدواء بتاعك او صورة و اضحة للروشتة"]
-  ]
-};
-let timers = [];
-function play(key){
-  timers.forEach(clearTimeout); timers = [];
-  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("act", c.dataset.s === key));
-  const box = $("#msgs"); box.textContent = "";
-  SCENES[key].forEach(([cls,text],i) => {
-    timers.push(setTimeout(() => {
-      const d = document.createElement("div");
-      d.className = cls; d.textContent = text; d.dir = "auto";
-      box.append(d); box.scrollTop = box.scrollHeight;
-    }, i * 1300));
-  });
+const CAT0 = [
+["P001","Panadol Extra","paracetamol+caffeine","500mg/65mg",30,120,20,false],
+["P002","Panadol","paracetamol","500mg",22,80,20,false],
+["P003","Cataflam","diclofenac potassium","50mg",45,60,15,false],
+["P004","Augmentin","amoxicillin+clavulanate","1g",140,25,10,false],
+["P005","Amoxil","amoxicillin","500mg",38,40,10,false],
+["P006","Brufen","ibuprofen","400mg",28,70,15,false],
+["P007","Xanax","alprazolam","0.5mg",60,8,5,true],
+["P008","Nexium","esomeprazole","40mg",175,12,10,false],
+["P009","Concor","bisoprolol","5mg",95,30,10,false],
+["P010","Ventolin","salbutamol","100mcg",85,6,8,false],
+["P011","Abimol","paracetamol","500mg",15,100,20,false]
+].map(([sku,name,ai,strength,price,stock,reorder,controlled])=>({sku,name,ai,strength,price,stock,reorder,controlled}));
+const AR = [["بانادول اكسترا","Panadol Extra"],["بانادول","Panadol"],["كتافلام","Cataflam"],["اوجمنتين","Augmentin"],["أوجمنتين","Augmentin"],["اموكسيل","Amoxil"],["بروفين","Brufen"],["زاناكس","Xanax"],["نيكسيوم","Nexium"],["نكسيوم","Nexium"],["كونكور","Concor"],["فنتولين","Ventolin"],["ابيمول","Abimol"]];
+const CHIPS = ["Panadol Extra ×2","عايز ٢ بانادول اكسترا","Brufen 400","Panadol Extraa","Xanax 0.5","Ventolin ×9","Hello"];
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let cat, st, busy = false, pending = {};
+
+function el(cls, text, parent){ const d = document.createElement("div"); d.className = cls; if (text != null) d.textContent = text; d.dir = "auto"; parent.append(d); parent.scrollTop = parent.scrollHeight; return d; }
+const wa = (cls, t) => el(cls, t, $("#wa"));
+function log(t, cls){ el("ln " + (cls || ""), t, $("#log")); }
+function setState(t, run){ $("#state").textContent = t; $("#state").className = "state" + (run ? " run" : ""); }
+function render(){
+  $("#sExec").textContent = st.exec; $("#sRes").textContent = st.res; $("#sPen").textContent = st.pen; $("#sApp").textContent = st.app; $("#sRej").textContent = st.rej;
+  $("#stock").innerHTML = "";
+  cat.forEach(p => { const d = document.createElement("div"); d.className = "sk" + (p.stock <= p.reorder ? " low" : ""); d.innerHTML = "<span></span><b></b>"; d.firstChild.textContent = p.name + " " + p.strength; d.lastChild.textContent = p.stock; $("#stock").append(d); });
 }
-document.querySelectorAll(".chip").forEach(c => c.onclick = () => play(c.dataset.s));
-play("auto");
+function lock(b){ busy = b; document.querySelectorAll("#send,#photo,.chip").forEach(x => x.disabled = b); }
+async function steps(list){ for (const [t, c] of list){ log(t, c); await sleep(210); } }
+
+function init(){
+  cat = CAT0.map(p => ({...p})); st = {exec:0, res:0, pen:0, app:0, rej:0}; pending = {};
+  $("#wa").textContent = ""; $("#log").textContent = ""; $("#tg").textContent = "";
+  wa("bot", "Hello! Send the medicine name (e.g. Panadol 500) or a clear photo of the prescription. / ابعت اسم الدوا أو صورة واضحة للروشتة.");
+  const b = el("bot", null, $("#tg")); b.innerHTML = "<b class='who'></b><span></span>"; b.querySelector("b").textContent = "Dawaa Bot"; b.querySelector("span").textContent = "Requests that need a pharmacist will appear here with Approve and Reject buttons.";
+  log("Send a WhatsApp message to start an execution.", "");
+  setState("Idle"); lock(false); render();
+}
+
+/* Stand-in for the Gemini step: turns a message into medicines. */
+function readRequest(raw){
+  if (/^\s*(hi|hello|hey|السلام عليكم|مرحبا|اهلا|أهلا|ازيك)\b/i.test(raw) || !raw.trim()) return {is_prescription:false, readable:true, medicines:[]};
+  let t = raw.replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d));
+  AR.forEach(([a, e]) => { t = t.split(a).join(e); });
+  const meds = [];
+  t.split(/,|\n|\+|،|\band\b|\sو\s/i).map(s => s.trim()).filter(Boolean).forEach(part => {
+    const nums = part.match(/\d+(\.\d+)?/g) || [];
+    const q = nums.find(n => /^[1-9]$/.test(n));
+    const name = part.replace(/\d+(\.\d+)?/g, " ").replace(/\bmg\b/gi, " ")
+      .replace(/(عايز|عاوز|محتاج|ابغى|من فضلك|علبة|علب|شريط|i want|i need|please|pls|want|need)/gi, " ")
+      .replace(/(^|\s)[x×](?=\s|$)/gi, " ").replace(/\s+/g, " ").trim();
+    if (name) meds.push({name, qty: q ? Number(q) : 1});
+  });
+  return {is_prescription:false, readable:true, medicines:meds};
+}
+/* Same rules as the Match Catalog code node. */
+function matchCatalog(r){
+  const norm = s => String(s || "").toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, "");
+  const lev = (a, b) => { const d = Array.from({length:a.length+1}, (_, i) => [i]); for (let j = 1; j <= b.length; j++) d[0][j] = j;
+    for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1)); return d[a.length][b.length]; };
+  const lines = [], unclear = [];
+  for (const m of (r.medicines || []).slice(0, 10)){
+    const n = norm(m.name); if (!n || n === "?"){ unclear.push(m.name || "?"); continue; }
+    const best = cat.map(p => ({p, d: lev(n, norm(p.name))})).sort((a, b) => a.d - b.d)[0];
+    if (!best || best.d > Math.max(2, Math.floor(n.length * 0.35))){ unclear.push(m.name); continue; }
+    const p = best.p, qty = Math.max(1, Math.min(9, Math.round(Number(m.qty) || 1)));
+    const alt = cat.find(x => x.sku !== p.sku && x.ai === p.ai && x.strength === p.strength && x.stock >= qty);
+    lines.push({sku:p.sku, name:p.name + " " + p.strength, qty, price:p.price, in_stock:p.stock >= qty, controlled:p.controlled, fuzzy:best.d > 0,
+      alternative: p.stock < qty && alt ? alt.name + " " + alt.strength + " (" + alt.sku + ", " + alt.price + " EGP)" : ""});
+  }
+  const needsPharmacist = r.is_prescription || !r.readable || unclear.length > 0 || lines.some(l => l.controlled || !l.in_stock || l.fuzzy);
+  const d = new Date(), group = "R-" + String(d.getFullYear()).slice(2) + String(d.getMonth()+1).padStart(2,"0") + String(d.getDate()).padStart(2,"0") + "-" + Math.random().toString(36).slice(2,6).toUpperCase();
+  return {group, lines, unclear, needsPharmacist, nothing: !lines.length && !unclear.length, total: lines.filter(l => l.in_stock).reduce((s, l) => s + l.qty * l.price, 0)};
+}
+const lineTxt = l => l.qty + " × " + l.name;
+const holdUntil = () => { const d = new Date(Date.now() + 2*3600*1000); return d.toTimeString().slice(0,5); };
+function take(lines){ lines.forEach(l => { const p = cat.find(x => x.sku === l.sku); if (p) p.stock = Math.max(0, p.stock - l.qty); }); }
+
+async function handle(text, isPhoto){
+  if (busy) return; lock(true); setState("Running", true);
+  st.exec++; render();
+  wa("me", isPhoto ? "📷 prescription.jpg" : text);
+  await steps([["▶ WhatsApp Trigger · new message", "st"], ["✓ Normalize Message", "ok"], ["✓ Is Photo? → " + (isPhoto ? "photo" : "text"), "ok"]]);
+  let r;
+  if (isPhoto){
+    await steps([["✓ Get Photo URL", "ok"], ["✓ Download Photo", "ok"], ["✓ Prepare Prescription Read", "ok"]]);
+    r = {is_prescription:true, readable:true, medicines:[{name:"Augmentin", qty:1},{name:"Cataflam", qty:1}]};
+  } else { await steps([["✓ Prepare Text Read", "ok"]]); r = readRequest(text); }
+  await steps([["✓ AI Read Request (Gemini) → " + (r.medicines.length ? r.medicines.map(m => m.qty + "× " + m.name).join(", ") : "no medicines"), "ok"], ["✓ Read Catalog · " + cat.length + " rows", "ok"]]);
+  const m = matchCatalog(r);
+  await steps([["✓ Match Catalog · " + m.lines.length + " matched, " + m.unclear.length + " unclear", "ok"]]);
+  if (m.nothing){
+    await steps([["→ Route Request: Nothing Found", "rt"], ["✓ Nothing Found Reply", "ok"]]);
+    wa("bot", "ابعت الدواء بتاعك او صورة و اضحة للروشتة");
+  } else if (!m.needsPharmacist){
+    await steps([["→ Route Request: Auto Reserve", "rt"], ["✓ One Row per Medicine", "ok"], ["✓ Save Reservation Lines · reserved", "ok"], ["✓ If → Take Stock Now", "ok"], ["✓ Update Stock", "ok"], ["✓ Confirm Reservation", "ok"]]);
+    take(m.lines); st.res++;
+    wa("bot", "✅ Reserved (" + m.group + "):\n" + m.lines.map(l => l.qty + " × " + l.name + " = " + l.qty * l.price + " EGP").join("\n") + "\nTotal: " + m.total + " EGP. Pick up from the pharmacy. / محجوز لمدة ساعتين (until " + holdUntil() + ")");
+  } else {
+    await steps([["→ Route Request: Pharmacist", "rt"], ["✓ One Row per Medicine", "ok"], ["✓ Save Reservation Lines · pending_pharmacist", "ok"], ["✓ If → Ask Pharmacist (Telegram)", "ok"], ["✓ Confirm Reservation1", "ok"]]);
+    st.pen++; pending[m.group] = m; sendToTelegram(m);
+    wa("bot", "شكرًا لإنتظارك، الدكتور بيراجع طلبك");
+  }
+  render(); setState("Done"); lock(false);
+}
+function sendToTelegram(m){
+  const body = m.lines.map(l => "• " + l.name + " x" + l.qty + (l.fuzzy ? " (fuzzy match)" : "") + (l.controlled ? " (controlled)" : "") + (!l.in_stock ? " (out of stock)" : "") + (l.alternative ? "\n   ↳ alternative: " + l.alternative : "")).join("\n");
+  const unclear = m.unclear.length ? "\n\n❓ unclear: " + m.unclear.join(", ") : "";
+  const b = el("bot", null, $("#tg"));
+  const who = document.createElement("b"); who.className = "who"; who.textContent = "Dawaa Bot";
+  const txt = document.createElement("div"); txt.textContent = "Order from Demo customer\n\n" + body + unclear; txt.style.whiteSpace = "pre-wrap";
+  const row = document.createElement("div"); row.className = "tgbtns";
+  const ok = document.createElement("button"); ok.className = "ok"; ok.textContent = "✅ Approve";
+  const no = document.createElement("button"); no.className = "no"; no.textContent = "❌ Reject";
+  const note = document.createElement("div"); note.className = "verdict";
+  row.append(ok, no); b.append(who, txt, row, note);
+  ok.onclick = () => decide("approve", m, b, row, note);
+  no.onclick = () => decide("reject", m, b, row, note);
+  $("#tg").scrollTop = $("#tg").scrollHeight;
+}
+async function decide(action, m, b, row, note){
+  if (busy || !pending[m.group]) return; lock(true); setState("Running", true);
+  await steps([["▶ Telegram Trigger · callback_query", "st"], ["✓ Parse Decision", "ok"], ["✓ Get Reservations", "ok"], ["✓ Get Catalog", "ok"]]);
+  if (action === "approve"){
+    const short = m.lines.find(l => { const p = cat.find(x => x.sku === l.sku); return p && p.stock < l.qty; });
+    if (short){
+      await steps([["✓ Apply Decision · not enough stock for " + short.name, "er"]]);
+      note.textContent = "Not enough stock for " + short.name + ". Edit the request or reject."; setState("Done"); lock(false); return;
+    }
+    await steps([["✓ Apply Decision · approve", "ok"], ["✓ Answer Pharmacist · Send Message", "ok"], ["✓ Update Lines", "ok"], ["→ Approved? yes → Take Stock (Approved)", "rt"], ["✓ Tell Customer, Approved", "ok"]]);
+    take(m.lines); st.app++;
+    wa("bot", "✅ Your pharmacist approved " + m.group + ": " + m.lines.map(lineTxt).join(", ") + ". Total " + m.lines.reduce((s, l) => s + l.qty * l.price, 0) + " EGP, reserved for 2 hours. / تم الحجز لمدة ساعتين");
+    note.textContent = "✅ Approved by Pharmacist";
+  } else {
+    await steps([["✓ Apply Decision · reject", "ok"], ["✓ Answer Pharmacist · Send Message", "ok"], ["✓ Update Lines", "ok"], ["→ Approved? no → Tell Customer Declined", "rt"]]);
+    st.rej++; wa("bot", "للأسف مش هقدر اساعدك، تواصل مع الصيدلى على التيليفون");
+    note.textContent = "❌ Rejected by Pharmacist";
+  }
+  row.remove(); delete pending[m.group]; st.pen--; render(); setState("Done"); lock(false);
+}
+
+CHIPS.forEach(c => { const b = document.createElement("button"); b.type = "button"; b.className = "chip"; b.textContent = c; b.onclick = () => handle(c.replace("×", " ×"), false); $("#chips").append(b); });
+$("#form").onsubmit = e => { e.preventDefault(); const t = $("#q").value.trim(); if (!t || busy) return; $("#q").value = ""; handle(t, false); };
+$("#photo").onclick = () => handle("", true);
+$("#reset").onclick = () => { if (!busy) init(); };
+init();
 </script>
 </body>
 </html>
